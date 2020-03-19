@@ -2,7 +2,7 @@
   "name": "go-to-test",
   "displayName": "go-to-test",
   "description": "Switch between source file and test file",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "futantan",
   "icon": "assets/icon.png",
   "engines": {
