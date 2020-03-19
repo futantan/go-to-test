@@ -1,13 +1,20 @@
 import * as path from 'path'
-import { TEST_FILE_SUFFIX } from './constant'
+import { TEST_FILE_SUFFIXES } from './constant'
+import { OpenOption } from './type'
 
-export function getSourceFilePath(testFilePath: string) {
-  const fileFullName = path.basename(testFilePath)
-  const sourceFolder = path.dirname(path.dirname(testFilePath))
+function removeTestSuffix(fileName: string) {
+  TEST_FILE_SUFFIXES.forEach(suffix => {
+    fileName = fileName.replace(`.${suffix}.`, '.')
+  })
+  return fileName
+}
 
-  const sourceFilePath = path.join(
-    sourceFolder,
-    fileFullName.replace(`.${TEST_FILE_SUFFIX}`, '')
-  )
-  return sourceFilePath
+// input -> /user/demo/__tests__/sum.test.js
+export function getSourceFilePath(testFilePath: string): OpenOption {
+  const fileFullName = path.basename(testFilePath) // sum.test.js
+  const sourceFolder = path.dirname(path.dirname(testFilePath)) // /user/demo
+
+  const fileName = removeTestSuffix(fileFullName) // sum.js
+  const sourceFilePath = path.join(sourceFolder, fileName) // /user/demo/sum.js
+  return { possiblePaths: [sourceFilePath], fileName }
 }

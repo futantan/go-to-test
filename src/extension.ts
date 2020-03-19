@@ -1,7 +1,5 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
 import * as R from 'ramda'
-import { TEST_FILE_SUFFIX, TEST_FOLDER_NAME } from './constant'
 import { getSourceFilePath } from './getSourceFilePath'
 import { getTestFilePath } from './getTestFilePath'
 import { isTestFile } from './isTestFile'
