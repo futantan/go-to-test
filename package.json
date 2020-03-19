@@ -19,6 +19,13 @@
         "command": "extension.goToTest",
         "title": "Go to test"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.goToTest",
+        "key": "ctrl+shift+t",
+        "mac": "shift+cmd+t"
+      }
     ]
   },
   "scripts": {
@@ -33,6 +40,7 @@
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.1",
     "@types/node": "^12.11.7",
+    "@types/ramda": "types/npm-ramda#dist",
     "@types/vscode": "^1.43.0",
     "eslint": "^6.8.0",
     "@typescript-eslint/parser": "^2.18.0",
@@ -41,5 +49,8 @@
     "mocha": "^7.0.1",
     "typescript": "^3.7.5",
     "vscode-test": "^1.3.0"
+  },
+  "dependencies": {
+    "ramda": "^0.27.0"
   }
 }

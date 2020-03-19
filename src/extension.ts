@@ -1,33 +1,29 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as R from 'ramda'
+import { TEST_FILE_SUFFIX, TEST_FOLDER_NAME } from './constant'
+import { getSourceFilePath } from './getSourceFilePath'
+import { getTestFilePath } from './getTestFilePath'
+import { isTestFile } from './isTestFile'
+import { openFile } from './utils'
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const openSourceOf = R.compose(openFile, getSourceFilePath)
+const openTestOf = R.compose(openFile, getTestFilePath)
+const jumpBetweenSourceAndTest = R.ifElse(isTestFile, openSourceOf, openTestOf)
+
 export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    'extension.goToTest',
-    () => {
-      const activeFile = vscode.window.activeTextEditor
-      if (activeFile === undefined) return
+  let disposable = vscode.commands.registerCommand('extension.goToTest', () => {
+    const activeFile = vscode.window.activeTextEditor
+    if (activeFile === undefined) return
 
-      const [fileName, ...extensions] = path.basename(activeFile.document.uri.fsPath).split('.')
-      const currentFolder = path.dirname(activeFile.document.uri.fsPath)
-      const testFolder = path.join(currentFolder, '__tests__')
-      const testFilePath = path.join(testFolder, [fileName, 'test', ...extensions].join('.'))
-
-
-      vscode.workspace.openTextDocument(testFilePath)
-        .then(vscode.window.showTextDocument)
-    }
-  )
+    jumpBetweenSourceAndTest(activeFile.document.uri.fsPath)
+  })
 
   context.subscriptions.push(disposable)
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() { }
+export function deactivate() {}
