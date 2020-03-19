@@ -3,6 +3,8 @@
   "displayName": "go-to-test",
   "description": "Switch between source file and test file",
   "version": "0.0.1",
+  "publisher": "futantan",
+  "icon": "assets/icon.png",
   "engines": {
     "vscode": "^1.43.0"
   },
@@ -53,5 +55,18 @@
   },
   "dependencies": {
     "ramda": "^0.27.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/futantan/go-to-test"
+  },
+  "bugs": {
+    "url": "https://github.com/futantan/go-to-test/issues"
+  },
+  "keywords": [
+    "switcher",
+    "navigate",
+    "test",
+    "spec"
+  ]
 }
