@@ -4,11 +4,12 @@ This extension make it easier to navigate between source file and test file just
 
 ## Features
 
-* Open test file from source file
-* Open source file from test file
+- Open test file from source file
+- Open source file from test file
 
 ## Usage
-* Using `Go To Test` or using shortcut `cmd + shift + t`
+
+- Using `Go To Test` or using shortcut `cmd + shift + t`
 
 ![example](./assets/example.gif)
 
@@ -17,6 +18,6 @@ This extension make it easier to navigate between source file and test file just
 | `/user/demo/sum.js`                | `/user/demo/__tests__/sum.test.js` |
 | `/user/demo/sum.js`                | `/user/demo/__tests__/sum.spec.js` |
 | `/user/demo/__tests__/sum.test.js` | `/user/demo/sum.js`                |
-| `/user/demo/__tests__/sum.test.js` | `/user/demo/sum.js`                |
+| `/user/demo/__tests__/sum.spec.js` | `/user/demo/sum.js`                |
 
 > Not as you expected? [New Issue](https://github.com/futantan/go-to-test/issues/new) welcome!
